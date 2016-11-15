@@ -15,6 +15,10 @@ define('SPECIALCONSTANT',true);
 require 'models/connect.php';
 
 require 'models/User.php';
+require 'models/Articulo.php';
+require 'models/Lugar.php';
+require 'models/Menu.php';
+require 'models/Reservacion.php';
 //end EntidadesRESTFULL
 
 $app->run();

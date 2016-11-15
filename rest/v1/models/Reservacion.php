@@ -41,13 +41,13 @@ $app->get('/reservacion/:id',function($id) use($app) {
 $app->post("/reservacion/",function() use($app) {
 	$objDatos = json_decode(file_get_contents("php://input"));
 
-	$v_id_user = $objDatos->v_id_user;
-	$v_fecha_pedido = $objDatos->v_fecha_pedido;
+	$id_user = $objDatos->id_user;
+	$fecha_pedido = $objDatos->fecha_pedido;
 
 	try {
 		$conex = getConex();
 
-		$result = $conex->prepare("CALL pInsertReservacion('$v_id_user','$v_fecha_pedido');");
+		$result = $conex->prepare("CALL pInsertReservacion('$id_user','$fecha_pedido');");
 
 		$result->execute();
 		$res = $result->fetchObject();
