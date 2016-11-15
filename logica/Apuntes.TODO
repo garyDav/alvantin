@@ -1,0 +1,33 @@
+@Base de Datos
+--- ✄ -----------------------
+
+alvantin:
+  user:
+    ☐ id
+    ☐ nombre
+    ☐ apellido
+    ☐ correo
+    ☐ contra
+    ☐ celular
+    ☐ tipo
+  reservacion:
+    ☐ id
+    ☐ id_user
+    ☐ fecha
+    ☐ fecha_pedido
+  articulo:
+    ☐ id
+    ☐ id_reservacion
+    ☐ nombre
+    ☐ cantidad
+  menu:
+    ☐ id
+    ☐ id_reservacion
+    ☐ tipo
+    ☐ nombre
+    ☐ cantidad
+  lugar:
+    ☐ id
+    ☐ id_reservacion
+    ☐ nombre
+  

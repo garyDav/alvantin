@@ -8,12 +8,47 @@ CREATE TABLE user (
 	correo varchar(100),
 	contra varchar(100),
 	celular int,
-	tipo varchar(5)
+	tipo varchar(5),
+	fecha datetime
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
+CREATE TABLE reservacion (
+	id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	id_user int,
+	fecha datetime,
+	fecha_pedido datetime,
+
+	FOREIGN KEY (id_user) REFERENCES user(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE articulo (
+	id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	id_reservacion int,
+	nombre varchar(50),
+	cantidad int,
+
+	FOREIGN KEY (id_reservacion) REFERENCES reservacion(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
+CREATE TABLE menu (
+	id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	id_reservacion int,
+	tipo char(1),
+	nombre varchar(50),
+	cantidad int,
+
+	FOREIGN KEY (id_reservacion) REFERENCES reservacion(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE lugar (
+	id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	id_reservacion int,
+	nombre varchar(100),
+
+	FOREIGN KEY (id_reservacion) REFERENCES reservacion(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
 
@@ -55,9 +90,56 @@ CREATE PROCEDURE pInsertUser (
 )
 BEGIN
 	IF NOT EXISTS(SELECT id FROM user WHERE correo LIKE v_correo) THEN
-		INSERT INTO user VALUES(null,v_nombre,v_apellido,v_correo,v_contra,v_celular,v_tipo);
+		INSERT INTO user VALUES(null,v_nombre,v_apellido,v_correo,v_contra,v_celular,v_tipo,CURRENT_TIMESTAMP);
 		SELECT @@identity AS id,v_tipo AS tipo, 'Usuario creado exitosamente :)' AS error;
 	ELSE
 		SELECT 'Error: Correo ya registrado.' error;
 	END IF;
+END //
+
+DROP PROCEDURE IF EXISTS pInsertReservacion;
+CREATE PROCEDURE pInsertReservacion (
+	IN v_id_user int,
+	IN v_fecha_pedido datetime
+)
+BEGIN
+	INSERT INTO reservacion VALUES(null,v_id_user,CURRENT_TIMESTAMP,v_fecha_pedido);
+	SELECT @@identity AS id, 'Reservacion Registrada exitosamente.' AS error;
+END //
+
+DROP PROCEDURE IF EXISTS pInsertArticulo;
+CREATE PROCEDURE pInsertArticulo (
+	IN v_id_reservacion int,
+	IN v_nombre varchar(50),
+	IN v_cantidad int
+)
+BEGIN
+	IF NOT EXISTS(SELECT id FROM articulo WHERE nombre LIKE v_nombre) THEN
+		INSERT INTO articulo VALUES(null,v_id_reservacion,v_nombre,v_cantidad);
+		SELECT @@identity AS id, 'Articulo Registrado exitosamente.' AS error;
+	ELSE
+		SELECT 'Error: Nombre del articulo ya registrado.' error;
+	END IF;
+END //
+
+DROP PROCEDURE IF EXISTS pInsertMenu;
+CREATE PROCEDURE pInsertMenu (
+	IN id_reservacion int,
+	IN tipo char(1),
+	IN nombre varchar(50),
+	IN cantidad int
+)
+BEGIN
+	INSERT INTO menu VALUES(null,id_reservacion,tipo,nombre,cantidad);
+	SELECT @@identity AS id, 'Registro insertado exitosamente.' AS error;
+END //
+
+DROP PROCEDURE IF EXISTS pInsertLugar;
+CREATE PROCEDURE pInsertLugar (
+	IN id_reservacion int,
+	IN nombre varchar(100)
+)
+BEGIN
+	INSERT INTO lugar VALUES(null,id_reservacion,nombre);
+	SELECT @@identity AS id, 'Lugar registrado exitosamente.' AS error;
 END //
