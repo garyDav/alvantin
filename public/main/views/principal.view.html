@@ -1,0 +1,38 @@
+<!--parallax-->
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <h5 class="header col s12 light text-color-gris-claro">Alvantin el mejor restaurant del mundo</h5>
+      </div>
+    </div>
+  </div>
+  <div class="parallax"><img ng-src="material/img/res1.jpg" alt="Plato 1" style="display: block; transform: translate3d(-50%, 29px, 0px);"></div>
+</div>
+
+<!--imagen circular-->
+<div class="card-panel grey lighten-5 z-depth-1">
+  <div class="row valign-wrapper">
+    <div class="col s2">
+      <img ng-src="material/img/pos0.jpg" class="circle responsive-img"> <!-- notice the "circle" class -->
+    </div>
+    <div class="col s12">
+      <span class="black-text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur soluta maxime libero hic quam culpa officiis, temporibus sed quasi beatae quia repellendus, adipisci facilis, ipsa vel aperiam eaque mollitia quaerat.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur soluta maxime libero hic quam culpa officiis, temporibus sed quasi beatae quia repellendus, adipisci facilis, ipsa vel aperiam eaque mollitia quaerat.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur soluta maxime libero hic quam culpa officiis, temporibus sed quasi beatae quia repellendus, adipisci facilis, ipsa vel aperiam eaque mollitia quaerat.
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+/*inicializacion del parallax*/
+  $('.parallax').parallax();
+ 
+  /*es para hacer pequenia la pantalla y activar el boton de hamburguesa*/
+  $('.button-collapse').sideNav();
+  });
+</script>

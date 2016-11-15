@@ -1,0 +1,106 @@
+<!--ingresar-->
+<div class="row" ng-show="msgtxt">
+  <div class="col s12">
+    <div class="card-panel green accent-4">
+      {{msgtxt}}
+    </div>
+  </div>
+</div>
+<div class="row center">
+<form class="col s12" name="login" ng-submit="ingresar(user);">
+  <br><br>
+  <div class="row">
+    <div class="col s12">
+      Bienvenido: {{user.email}}
+    </div>
+  </div>
+  <div class="imput-fiel col s6">
+    <input id="email" type="email" class="validate" ng-model="user.email" required>
+          <label for="email">Email</label>
+  </div>
+  <div class="imput-fiel col s6">
+      <input id="password" type="password" class="validate" ng-model="user.pass" required>
+          <label for="password">Password</label>
+  </div>
+  
+  <div class="center">
+     <button class="btn waves-effect waves-light" type="submit" ng-disabled="login.$invalid">Ingresar
+         <i class="material-icons right">send</i>
+     </button>
+  </div>
+</form>
+</div>
+<!--button-->
+
+<!--imagen circular-->
+<div class="card-panel grey lighten-5 z-depth-1">
+    <div class="row valign-wrapper">
+      <div class="col s2">
+        <img ng-src="material/img/mu0.jpg" class="circle responsive-img"> <!-- notice the "circle" class -->
+      </div>
+      <div class="col s12">
+        <span class="black-text">
+          Si no esta registrado, registrese por favor para que pueda hacer su pedido y la adquisicion de nuestra deliciosa comida.
+        </span>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+
+<!--registrarse-->
+ <div class="row">
+  <form class="col s12" name="createUser" ng-submit="create();">
+
+    <div class="row" ng-show="mensaje">
+      <div class="col s12">
+        <div class="card-panel green accent-4">
+          {{mensaje}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <input ng-model="name" id="first_name" type="text" class="validate" required>
+        <label for="first_name">First Name</label>
+      </div>
+      <div class="input-field col s6">
+        <input ng-model="last_name" id="last_name" type="text" class="validate" required>
+        <label for="last_name">Last Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input ng-model="email" id="email" type="email" class="validate" required>
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input ng-model="pass" id="password" type="password" class="validate" required>
+        <label for="password">Password</label>
+      </div>
+      <div class="input-field col s6">
+        <input ng-model="cell" id="cell" type="text" class="validate" required>
+        <label for="cell">Cell phone</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l4 m2"></div>
+      <div class="input-field col l4 m8 s12">
+        <input ng-model="key" id="clave_admin" type="password" class="validate">
+        <label for="clave_admin">Key for admin</label>
+      </div>
+      <div class="col l4 m2"></div>
+    </div>
+    <!--button-->
+    <div class="center">
+       <button class="btn waves-effect waves-light" type="submit" ng-disabled="createUser.$invalid">Registrarse
+           <i class="material-icons right">send</i>
+       </button>
+    </div>
+  </form>
+</div>
+
+

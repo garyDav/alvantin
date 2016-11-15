@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/materialize.min.css">
+	<title>usuarios</title>
+</head>
+<body>
+
+<!--navegacion-->
+<div class="navbar-fixed">
+	<nav class="teal darken-1" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+             <a href="#" id="logo-container" class="brand-logo">Alvantin</a> 
+                <ul class="right hide-on-med-and-down">
+                	<li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="usuarios.html">Usuario</a></li>
+                </ul>
+                <ul id="nav-mobile" class="side-nav" style="left: -250px;">
+					 <li><a href="index.html">Home</a></li>
+					 <li><a href="menu.html">Menu</a></li>
+					 <li><a href="usuarios.html">Usuario</a></li>
+                </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </div>
+    </nav>
+</div>
+<br>
+<br>
+
+<!--ingresar-->
+<div class="row center">
+	<form class="col s12">
+		<div class="imput-fiel col s6">
+			<input id="email" type="email" class="validate" name="hola">
+          	<label for="email">Email</label>
+		</div>
+		<div class="imput-fiel col s6">
+		  	<input id="password" type="password" class="validate" name="hola">
+          	<label for="password">Password</label>
+		</div>
+	</form>
+</div>
+<!--button-->
+ <div class="center">
+     <button class="btn waves-effect waves-light" type="submit">Ingresar
+         <i class="mdi-content-send right white-text"></i>
+     </button>
+ </div>
+
+ <?php
+ $n=$_POST["hola"];
+ if(email==terryselt@gmail.com && password==1234567)
+ 
+ ?>
+
+  <!--imagen circular-->
+  <div class="card-panel grey lighten-5 z-depth-1">
+      <div class="row valign-wrapper">
+        <div class="col s2">
+          <img src="img/mu0.jpg" class="circle responsive-img"> <!-- notice the "circle" class -->
+        </div>
+        <div class="col s12">
+          <span class="black-text">
+            Si no esta registrado, registrese por favor para que pueda hacer su pedido y la adquisicion de nuestra deliciosa comida.
+          </span>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+ <!--registrarse-->
+   <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!--button-->
+ <div class="center">
+     <button class="btn waves-effect waves-light" type="submit">Registrarse
+         <i class="mdi-content-send right white-text"></i>
+     </button>
+ </div>
+
+  		<!--adjuntado archivos js-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/materialize.min.js"></script>
+	<!--termino de adjuntado archivos js-->
+
+	<script>
+	$(document).ready(function(){
+   
+    /*es para hacer pequenia la pantalla y activar el boton de hamburguesa*/
+	$('.button-collapse').sideNav();
+	});
+    </script>
+	
+</body>
+</html>
