@@ -3,7 +3,7 @@
 
 //Variable global mainApplicationModuleName donde carga el modulo principal
 var mainApplicationModuleName = 'alvantin';
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource','ngRoute','mainModule','LocalStorageModule','angular-loading-bar','ngAnimate']);
+var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource','ngRoute','mainModule','lugarModule','articuloModule','menuModule','LocalStorageModule','angular-loading-bar','ngAnimate']);
 
 mainApplicationModule.config(['$locationProvider',function($locationProvider) {
 	$locationProvider.html5Mode(true);

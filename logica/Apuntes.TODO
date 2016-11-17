@@ -28,6 +28,10 @@ alvantin:
     ☐ cantidad
   lugar:
     ☐ id
-    ☐ id_reservacion
     ☐ nombre
-  
+    ☐ descripcion
+    ☐ tipo
+  img_lugar:
+    ☐ id
+    ☐ id_lugar
+    ☐ src

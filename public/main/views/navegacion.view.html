@@ -2,34 +2,52 @@
 
 <nav >
   <div class="nav-wrapper grey darken-4">
-    <a href="#!" class="brand-logo">Alvantin</a>
+    <a href="/alvantin/" class="brand-logo">Alvantin</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-small-only" ng-hide="c_user || c_admin">
     	<li><a ng-href="/alvantin/"><i class="material-icons">refresh</i></a></li>
-		<li><a ng-href="/alvantin/menu">Menu</a></li>
-        <li><a ng-href="/alvantin/usuario">Usuario</a></li>
+		  <li><a ng-href="/alvantin/menu">Menu</a></li>
+      <li><a ng-href="/alvantin/usuario">Ingresar</a></li>
+      <li ng-show="c_admin"><a ng-href="/alvantin/admin">Administrador</a></li>
+      <li ng-show="c_user"><a ng-href="/alvantin/user">Usuario</a></li>
     </ul>
 
 	
-	<ul class="right hide-on-small-only" ng-show="c_admin">
-    	<li><a ng-href="/alvantin/platos">Platos</a></li>
-		<li><a ng-href="/alvantin/sillas_mesas">Sillas y Mesas</a></li>
-        <li><a ng-href="/alvantin/cliente">Clientes</a></li>
-        <li><a ng-click="/alvantin/reportes">Reportes</a></li>
-        <li><a ng-click="logout()">Logout</a></li>
+	  <ul class="right hide-on-med-and-down" ng-show="c_admin">
+    	<!--<li><a ng-href="/alvantin/admin/articulos">Articulos</a></li>-->
+		  <li><a ng-href="/alvantin/admin/menu">Llenar menu</a></li>
+      <li><a ng-href="/alvantin/admin/lugares">Lugares</a></li>
+      <li><a ng-href="/alvantin/admin/reportes">Reportes</a></li>
+      <li><a ng-click="logout()">Logout</a></li>
     </ul>
     <ul class="right hide-on-small-only" ng-show="c_user">
-    	<li><a ng-href="/alvantin/selecciona">Selecciona plato y mas...</a></li>
+    	<li><a ng-href="/alvantin/user/reservacion">Reservaciones y pedidos</a></li>
     	<li><a ng-click="logout()">Logout</a></li>
     </ul>
 
 
-
+    <!-- Navegacion en movil -->
     <ul class="side-nav" id="mobile-demo">
+      <div ng-hide="c_user || c_admin">
       	<li><a ng-href="/alvantin/"><i class="material-icons">refresh</i> Home</a></li>
-	  	<li><a ng-href="/alvantin/menu">Menu</a></li>
-      	<li><a ng-href="/alvantin/usuario">Usuario</a></li>
-      	<li><a ng-click="logout()">Logout</a></li>
+    	  <li><a ng-href="/alvantin/menu">Menu</a></li>
+      	<li><a ng-href="/alvantin/usuario">Ingresar</a></li>
+        <li ng-show="c_admin"><a ng-href="/alvantin/admin">Administrador</a></li>
+        <li ng-show="c_user"><a ng-href="/alvantin/user">Usuario</a></li>
+      </div>
+      <div ng-show="c_admin">
+        <li><a ng-href="/alvantin/"><i class="material-icons">refresh</i> Home</a></li>
+        <!--<li><a ng-href="/alvantin/admin/articulos">Articulos</a></li>-->
+        <li><a ng-href="/alvantin/admin/menu">Llenar menu</a></li>
+        <li><a ng-href="/alvantin/admin/lugares">Lugares</a></li>
+        <li><a ng-href="/alvantin/admin/reportes">Reportes</a></li>
+        <li><a ng-click="logout()">Logout</a></li>
+      </div>
+      <div ng-show="c_user">
+        <li><a ng-href="/alvantin/"><i class="material-icons">refresh</i> Home</a></li>
+        <li><a ng-href="/alvantin/user/reservacion">Reservaciones y pedidos</a></li>
+        <li><a ng-click="logout()">Logout</a></li>
+      </div>
     </ul>
   </div>
 </nav>

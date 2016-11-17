@@ -34,20 +34,32 @@ CREATE TABLE articulo (
 
 CREATE TABLE menu (
 	id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	id_reservacion int,
-	tipo char(1),
-	nombre varchar(50),
-	cantidad int,
-
-	FOREIGN KEY (id_reservacion) REFERENCES reservacion(id)
+	nombre varchar(100),
+	descripcion text,
+	tipo varchar(10)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-CREATE TABLE lugar (
+/*CREATE TABLE lugar (
 	id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
 	id_reservacion int,
 	nombre varchar(100),
 
 	FOREIGN KEY (id_reservacion) REFERENCES reservacion(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;*/
+
+CREATE TABLE lugar (
+	id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	nombre varchar(100),
+	descripcion text,
+	tipo varchar(10)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE img_lugar (
+	id int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+	id_lugar int,
+	src varchar(255),
+
+	FOREIGN KEY (id_lugar) REFERENCES lugar(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
@@ -124,22 +136,26 @@ END //
 
 DROP PROCEDURE IF EXISTS pInsertMenu;
 CREATE PROCEDURE pInsertMenu (
-	IN id_reservacion int,
-	IN tipo char(1),
-	IN nombre varchar(50),
-	IN cantidad int
+	IN nombre varchar(100),
+	IN descripcion text,
+	IN tipo varchar(10)
 )
 BEGIN
-	INSERT INTO menu VALUES(null,id_reservacion,tipo,nombre,cantidad);
+	INSERT INTO menu VALUES(null,nombre,descripcion,tipo);
 	SELECT @@identity AS id, 'Registro insertado exitosamente.' AS error;
 END //
 
 DROP PROCEDURE IF EXISTS pInsertLugar;
 CREATE PROCEDURE pInsertLugar (
-	IN id_reservacion int,
-	IN nombre varchar(100)
+	IN v_nombre varchar(100),
+	IN v_descripcion text,
+	IN v_tipo varchar(10)
 )
 BEGIN
-	INSERT INTO lugar VALUES(null,id_reservacion,nombre);
-	SELECT @@identity AS id, 'Lugar registrado exitosamente.' AS error;
+	IF NOT EXISTS(SELECT id FROM lugar WHERE tipo LIKE v_tipo) THEN
+		INSERT INTO lugar VALUES(null,v_nombre,v_descripcion,v_tipo);
+		SELECT @@identity AS id, 'Lugar registrado exitosamente.' AS error;
+	ELSE
+		SELECT 'Error: Lugar ya registrado.' error;
+	END IF;
 END //

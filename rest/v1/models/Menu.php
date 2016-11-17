@@ -41,15 +41,14 @@ $app->get('/menu/:id',function($id) use($app) {
 $app->post("/menu/",function() use($app) {
 	$objDatos = json_decode(file_get_contents("php://input"));
 
-	$id_reservacion = $objDatos->id_reservacion;
-	$tipo = $objDatos->tipo;
 	$nombre = $objDatos->nombre;
-	$cantidad = $objDatos->cantidad;
+	$descripcion = $objDatos->descripcion;
+	$tipo = $objDatos->tipo;
 
 	try {
 		$conex = getConex();
 
-		$result = $conex->prepare("CALL pInsertMenu('$id_reservacion','$tipo','$nombre','$cantidad');");
+		$result = $conex->prepare("CALL pInsertMenu('$nombre','$descripcion','$tipo');");
 
 		$result->execute();
 		$res = $result->fetchObject();
@@ -73,14 +72,13 @@ $app->put("/menu/:id",function($id) use($app) {
 	$jsonmessage = \Slim\Slim::getInstance()->request();
   	$objDatos = json_decode($jsonmessage->getBody());
 
-	$id_reservacion = $objDatos->id_reservacion;
-	$tipo = $objDatos->tipo;
 	$nombre = $objDatos->nombre;
-	$cantidad = $objDatos->cantidad;
+	$descripcion = $objDatos->descripcion;
+	$tipo = $objDatos->tipo;
 
 	try {
 		$conex = getConex();
-		$result = $conex->prepare("UPDATE menu SET id_reservacion='$id_reservacion',tipo='$tipo',nombre='$nombre',cantidad='$cantidad' WHERE id='$id'");
+		$result = $conex->prepare("UPDATE menu SET nombre='$nombre',descripcion='$descripcion',tipo='$tipo' WHERE id='$id'");
 
 		$result->execute();
 		$conex = null;
@@ -97,7 +95,7 @@ $app->put("/menu/:id",function($id) use($app) {
 $app->delete('/menu/:id',function($id) use($app) {
 	try {
 		$conex = getConex();
-		$result = $conex->prepare("DELETE menu WHERE id='$id'");
+		$result = $conex->prepare("DELETE FROM menu WHERE id='$id'");
 
 		$result->execute();
 		$conex = null;

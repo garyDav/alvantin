@@ -41,13 +41,14 @@ $app->get('/lugar/:id',function($id) use($app) {
 $app->post("/lugar/",function() use($app) {
 	$objDatos = json_decode(file_get_contents("php://input"));
 
-	$id_reservacion = $objDatos->id_reservacion;
 	$nombre = $objDatos->nombre;
+	$descripcion = $objDatos->descripcion;
+	$tipo = $objDatos->tipo;
 
 	try {
 		$conex = getConex();
 
-		$result = $conex->prepare("CALL pInsertLugar('$id_reservacion','$nombre');");
+		$result = $conex->prepare("CALL pInsertLugar('$nombre','$descripcion','$tipo');");
 
 		$result->execute();
 		$res = $result->fetchObject();
@@ -71,19 +72,20 @@ $app->put("/lugar/:id",function($id) use($app) {
 	$jsonmessage = \Slim\Slim::getInstance()->request();
   	$objDatos = json_decode($jsonmessage->getBody());
 
-	$id_reservacion = $objDatos->id_reservacion;
 	$nombre = $objDatos->nombre;
+	$descripcion = $objDatos->descripcion;
+	$tipo = $objDatos->tipo;
 
 	try {
 		$conex = getConex();
-		$result = $conex->prepare("UPDATE lugar SET id_reservacion='$id_reservacion',nombre='$nombre' WHERE id='$id'");
+		$result = $conex->prepare("UPDATE lugar SET nombre='$nombre', descripcion='$descripcion', tipo='$tipo' WHERE id='$id'");
 
 		$result->execute();
 		$conex = null;
 
 		$app->response->headers->set('Content-type','application/json');
 		$app->response->status(200);
-		$app->response->body(json_encode(array('id'=>$id,'error'=>'')));
+		$app->response->body(json_encode(array('id'=>$id,'error'=>'success')));
 
 	}catch(PDOException $e) {
 		echo "Error: ".$e->getMessage();
@@ -93,7 +95,7 @@ $app->put("/lugar/:id",function($id) use($app) {
 $app->delete('/lugar/:id',function($id) use($app) {
 	try {
 		$conex = getConex();
-		$result = $conex->prepare("DELETE lugar WHERE id='$id'");
+		$result = $conex->prepare("DELETE FROM lugar WHERE id='$id'");
 
 		$result->execute();
 		$conex = null;

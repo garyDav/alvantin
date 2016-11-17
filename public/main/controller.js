@@ -1,7 +1,7 @@
 (function(angular){
 	'use strict';
-	angular.module('mainModule').controller('mainCtrl',['$scope','usuarioService','loginService','sessionService','$rootScope',
-		function($scope,usuarioService,loginService,sessionService,$rootScope) {
+	angular.module('mainModule').controller('mainCtrl',['$scope','usuarioService','loginService','sessionService','$rootScope','$location',
+		function($scope,usuarioService,loginService,sessionService,$rootScope,$location) {
 			$scope.mensaje = '';
 			$scope.msgtxt = '';
 
@@ -53,17 +53,11 @@
 			$scope.ingresar = function(user) {
 				console.log(user);
 				loginService.login(user,$scope);
-
-				
 			};
 			$scope.logout = function() {
 				console.log('entra logout');
 				loginService.logout();
 			};
-
-			
-
-			
 		}
 	]);
 
